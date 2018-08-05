@@ -1,18 +1,20 @@
 const path = require('path');
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = merge(common,{
+  mode: 'development',
+  entry: {
+    main: "./src/index.js"
+  },
+  output: {
+    filename: 'js/[name].[hash:5].js',
+    path: path.resolve(__dirname, '../dist')
+  },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        use: {
-          loader: 'babel-loader?cacheDirectory'  //cacheDirectory用于缓存编译结果，下次编译加速
-        },
-        include: path.resolve(__dirname,'src'), //对src文件夹中的文件进行编译
-        exclude: /node_modules/,
-      },
       {
         test: /\.css$/,
         use: [
@@ -27,13 +29,13 @@ module.exports = {
     compress: true,
     hot: true,
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, "dist"),
+    contentBase: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: path.resolve(__dirname, '../index.html')
     })
   ]
-}
+});

@@ -1,7 +1,10 @@
 import React from 'react';
+import './App.css';
 
-const App = () => (
-  <div>Hello 111</div>
-)
+const App = () => {
+  return (
+    <div className="app">ddkasbfkasbfksabfnmasbfmnsabfsamnfbsmanbfmnasbmnfasbmdsbdnmwqkhwqkjrhkjwqhkjfbmnasbfmabfmbwmqehkqjwhekqweq</div>
+  )
+}
 
 export default App;
