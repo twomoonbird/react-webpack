@@ -1,13 +1,7 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    main: "./src/index.js"
-  },
-  output: {
-    filename: '[name].[chunkhash:8].js',
-    path: path.resolve(__dirname, '../dist')
-  },
   module: {
     rules: [
       {
@@ -18,16 +12,20 @@ module.exports = {
         include: path.resolve(__dirname, '../src'), //对src文件夹中的文件进行编译
         exclude: /node_modules/,
       }
-      
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.html')
+    }),
+  ],
   optimization: {
     splitChunks: {
       cacheGroups: {
         styles: {
           name: 'styles',
           test: /\.css$/,
-          chunks: 'all',    // merge all the css chunk to one file
+          chunks: 'all',    // 将css集中到一个文件
           enforce: true
         }
       }

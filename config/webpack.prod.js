@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common,{
@@ -26,9 +25,6 @@ module.exports = merge(common,{
     path: path.resolve(__dirname, '../dist')
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html')
-    }),
     new MiniCssExtractPlugin({
       filename: 'css/main.[chunkhash:5].css',
       chunkFilename: 'css/main.[contenthash:5].css'
