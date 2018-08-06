@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -16,12 +17,24 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html')
+      template: path.resolve(__dirname, '../index.html'),
+      inject: true
     }),
+    new webpack.DefinePlugin({
+      context: __dirname,
+      manifest: path.resolve(__dirname, '../dll', 'manifest.json')
+    })
   ],
   optimization: {
     splitChunks: {
       cacheGroups: {
+        common: {
+          name: 'common',
+          test: /node_modules/,
+          chunks: 'initial',
+          priority: -10,
+          enforce : true
+        },
         styles: {
           name: 'styles',
           test: /\.css$/,

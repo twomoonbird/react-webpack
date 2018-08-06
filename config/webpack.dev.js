@@ -31,7 +31,7 @@ module.exports = merge(common,{
     contentBase: path.resolve(__dirname, '../dist'),
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
 });
