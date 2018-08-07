@@ -6,8 +6,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common,{
   mode: 'production',
-  entry: {
-    main: "./src/index.js"
+  output: {
+    filename: 'js/[name].[chunkhash:5].js',
+    chunkFilename: 'js/[name].[chunkhash:5].chunk.js',
+    path: path.resolve(__dirname, '../dist')
   },
   module: {
     rules: [
@@ -20,19 +22,14 @@ module.exports = merge(common,{
       }
     ]
   },
-  output: {
-    filename: 'js/[name].[chunkhash:5].js',
-    chunkFilename: 'js/[name].[chunkhash:5].chunk.js',
-    path: path.resolve(__dirname, '../dist')
-  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/main.[chunkhash:5].css',
       chunkFilename: 'css/main.[contenthash:5].css'
     }),
     new CopyWebpackPlugin([{
-      from: path.join(__dirname, '../dll'),
-      to: path.join(__dirname, '../dist','dll')
-  }])
+      from: path.resolve(__dirname, '../dll/*.dll.js'),
+      to: path.resolve(__dirname, '../dist')
+    }])
   ]
-});
+}); 

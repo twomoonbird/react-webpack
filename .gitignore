@@ -2,6 +2,7 @@
 .vscode/
 node_modules/
 build
+dll
 dist
 .DS_Store
 *.tgz

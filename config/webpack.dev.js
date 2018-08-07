@@ -6,12 +6,17 @@ const webpack = require('webpack');
 module.exports = merge(common,{
   mode: 'development',
   entry: {
-    main: "./src/index.js"
+    main: [
+      path.resolve(__dirname, '../src/index.js'),
+      'webpack-hot-middleware/client?path=/__webpack_hmr'
+    ],
   },
   output: {
     filename: 'js/[name].[hash:5].js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/'
   },
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {

@@ -1,8 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dllConfig = require('../dll/dll-config.json');
 
 module.exports = {
+  entry: {
+    main: path.resolve(__dirname, '../src')
+  },
   module: {
     rules: [
       {
@@ -18,9 +22,15 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
-      inject: true
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      dllName: dllConfig.vendor.js,
     }),
-    new webpack.DefinePlugin({
+    new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: path.resolve(__dirname, '../dll', 'manifest.json')
     })
