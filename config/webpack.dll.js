@@ -5,11 +5,15 @@ const AssetsWebpackPlugin = require('assets-webpack-plugin');
 module.exports = {
   mode: 'production',
   entry: {
-    vendor: ['react','react-dom','react-router-dom','react-loadable']  //提前提取的模块
+    vendor: [
+      'react','react-dom','react-router-dom',
+      'react-loadable','mobx','mobx-react',
+      
+    ]  //提前提取的模块
   },
   output: {
     path: path.resolve(__dirname, '../dll'),
-    filename: '[name].[chunkhash:5].dll.js',
+    filename: '[name].[chunkhash:8].dll.js',
     library: '[name]_library'
   },
 plugins: [

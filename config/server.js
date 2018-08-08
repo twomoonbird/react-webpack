@@ -9,7 +9,6 @@ const app = express();
 const devConfig = require('./webpack.dev.js');
 const compiler = webpack(devConfig);
 
-
 const port = 3000;
 
 app.use(compression());

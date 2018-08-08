@@ -11,6 +11,7 @@ template/src/__tests__/__snapshots__/
 lerna-debug.log
 package-lock.json
 yarn-lock.json
+manifest.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

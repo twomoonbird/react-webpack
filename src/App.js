@@ -1,10 +1,15 @@
 import React from 'react';
-import './App.css';
+import logo from './assets/test.png';
+import { Button } from 'antd';
+import './App.scss';
 
 const App = () => {
   return (
     <div className="app">
-      <div className='test1'>test2</div>
+      <img src={logo} />
+      <div className='test1'>
+        <Button>test</Button>
+      </div>
       <div className='test2'>test2</div>
     </div>
   )

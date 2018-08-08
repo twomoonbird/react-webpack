@@ -7,12 +7,13 @@ module.exports = merge(common,{
   mode: 'development',
   entry: {
     main: [
+      'babel-polyfill',
       path.resolve(__dirname, '../src/index.js'),
       'webpack-hot-middleware/client?path=/__webpack_hmr'
     ],
   },
   output: {
-    filename: 'js/[name].[hash:5].js',
+    filename: 'js/[name].[hash:8].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
@@ -20,11 +21,28 @@ module.exports = merge(common,{
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
-          'style-loader',
-          'css-loader'
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)(\?.*)?$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            name: 'images/img_[hash:8].[ext]'
+          }
+        }
       }
     ]
   },

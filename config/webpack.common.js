@@ -4,9 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dllConfig = require('../dll/dll-config.json');
 
 module.exports = {
-  entry: {
-    main: path.resolve(__dirname, '../src')
-  },
   module: {
     rules: [
       {
@@ -16,6 +13,14 @@ module.exports = {
         },
         include: path.resolve(__dirname, '../src'), //对src文件夹中的文件进行编译
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(ttf|eot|svg|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader?name=fonts/[name].[ext]'
+          }
+        ]
       }
     ]
   },
@@ -47,7 +52,7 @@ module.exports = {
         },
         styles: {
           name: 'styles',
-          test: /\.css$/,
+          test: /\.(css|scss)$/,
           chunks: 'all',    // 将css集中到一个文件
           enforce: true
         }
