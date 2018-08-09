@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dllConfig = require('../dll/dll-config.json');
+const HappyPack = require('happypack');
 
 module.exports = {
   module: {
@@ -9,7 +10,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: {
-          loader: 'babel-loader?cacheDirectory'  //cacheDirectory用于缓存编译结果，下次编译加速
+          loader: 'happypack/loader' //cacheDirectory用于缓存编译结果，下次编译加速
         },
         include: path.resolve(__dirname, '../src'), //对src文件夹中的文件进行编译
         exclude: /node_modules/,
@@ -18,7 +19,7 @@ module.exports = {
         test: /\.(ttf|eot|svg|woff|woff2)$/,
         use: [
           {
-            loader: 'file-loader?name=fonts/[name].[ext]'
+            loader: 'url-loader?name=fonts/[name].[ext]'
           }
         ]
       }
@@ -27,6 +28,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
+      favicon: path.resolve(__dirname,'../favicon.ico'),
       inject: true,
       minify: {
         removeComments: true,
@@ -38,6 +40,10 @@ module.exports = {
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: path.resolve(__dirname, '../dll', 'manifest.json')
+    }),
+    new HappyPack({
+      threads: 4,
+      loaders: ['babel-loader?cacheDirectory' ]
     })
   ],
   optimization: {

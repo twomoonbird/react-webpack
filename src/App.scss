@@ -1,21 +1,29 @@
+.App {
+  text-align: center;
 
-.app {
-  font-size: 30px;
-  height: 100%;
+  .App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
 
-  .test1 {
-    background: url('./assets/test.png') no-repeat center  ;
-    font-size: 5vw;
-    line-height: 200px;
-    width: 100vw;
-    height: 200px;
-    background-color: aqua;
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+      height: 80px;
+    }
+
+    .App-title {
+      font-size: 1.5em;
+    }
+
   }
-  .test2 {
-    font-size: 5vw;
-    line-height: 200px;
-    width: 100%;
-    height: 200px;
-    background-color: skyblue;
+
+  .App-intro {
+    font-size: large;
   }
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

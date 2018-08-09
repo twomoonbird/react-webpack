@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Loadable from 'react-loadable';
-import './index.css';
+import './index.scss';
 const Loading = ()=>(<div></div>)
 
 const AsyncApp = Loadable({

@@ -30,12 +30,20 @@ module.exports = merge(common,{
             loader: 'css-loader'
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.resolve(__dirname, './postcss.config.js')
+              }
+            }
+          },
+          {
             loader: 'sass-loader'
           }
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ico)(\?.*)?$/,
+        test: /\.(jpe?g|png|gif|ico)(\?.*)?$/,
         use: {
           loader: 'url-loader',
           options: {

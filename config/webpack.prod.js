@@ -45,12 +45,20 @@ module.exports = merge(common,{
             }
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.resolve(__dirname, './postcss.config.js')
+              }
+            }
+          },
+          {
             loader: 'sass-loader'
           }
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ico)(\?.*)?$/,
+        test: /\.(jpe?g|png|gif|ico)(\?.*)?$/,
         use: [
           {
             loader: 'url-loader',
@@ -83,5 +91,12 @@ module.exports = merge(common,{
       from: path.resolve(__dirname, '../dll/*.dll.js'),
       to: path.resolve(__dirname, '../dist')
     }])
-  ]
+  ],
+  performance: {
+    hints: false
+  },
+  stats: {
+    children: false,
+    modules: false,
+  }
 }); 
