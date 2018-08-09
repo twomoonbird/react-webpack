@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common,{
   mode: 'production',
@@ -87,10 +86,6 @@ module.exports = merge(common,{
       chunkFilename: 'css/main.[contenthash:8].css'
     }),
     new OptimizeCssAssetsPlugin(),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, '../dll/*.dll.js'),
-      to: path.resolve(__dirname, '../dist')
-    }])
   ],
   performance: {
     hints: false

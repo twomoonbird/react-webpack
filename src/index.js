@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Loadable from 'react-loadable';
+import OfflinePluginRuntime from 'offline-plugin/runtime';
+import App from './App';
 import './index.scss';
-const Loading = ()=>(<div></div>)
 
-const AsyncApp = Loadable({
-  loader: ()=>import('./App'),
-  loading: Loading
-})
 
 ReactDOM.render(
-  <AsyncApp />,
+  <App />,
   document.getElementById('root')
 );
 
 if(module.hot) {
   module.hot.accept()
 }
+OfflinePluginRuntime.install();

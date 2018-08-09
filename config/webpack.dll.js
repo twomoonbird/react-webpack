@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const AssetsWebpackPlugin = require('assets-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -16,15 +15,11 @@ module.exports = {
     filename: '[name].[chunkhash:8].dll.js',
     library: '[name]_library'
   },
-plugins: [
-  new webpack.DllPlugin({
-    name: '[name]_library',
-    path: path.resolve(__dirname, '../dll', 'manifest.json'),
-    context: __dirname
-  }),
-  new AssetsWebpackPlugin({
-    filename: 'dll-config.json',
-    path: path.resolve(__dirname, '../dll')
-  })
-]
+  plugins: [
+    new webpack.DllPlugin({
+      name: '[name]_library',
+      path: path.resolve(__dirname, '../dll', 'manifest.json'),
+      context: __dirname
+    })
+  ]
 };

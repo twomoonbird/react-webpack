@@ -1,8 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const dllConfig = require('../dll/dll-config.json');
 const HappyPack = require('happypack');
+const offlinePlugin = require('offline-plugin');
 
 module.exports = {
   module: {
@@ -34,17 +33,13 @@ module.exports = {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-      },
-      dllName: dllConfig.vendor.js,
-    }),
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: path.resolve(__dirname, '../dll', 'manifest.json')
+      }
     }),
     new HappyPack({
       threads: 4,
       loaders: ['babel-loader?cacheDirectory' ]
-    })
+    }),
+    new offlinePlugin()
   ],
   optimization: {
     splitChunks: {
