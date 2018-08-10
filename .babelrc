@@ -7,7 +7,6 @@
   "plugins": [
     "transform-runtime",
     "transform-decorators-legacy",
-    "react-hot-loader/babel",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
   ]
 }

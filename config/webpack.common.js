@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
-const offlinePlugin = require('offline-plugin');
 
 module.exports = {
   module: {
@@ -38,8 +37,7 @@ module.exports = {
     new HappyPack({
       threads: 4,
       loaders: ['babel-loader?cacheDirectory' ]
-    }),
-    new offlinePlugin()
+    })
   ],
   optimization: {
     splitChunks: {

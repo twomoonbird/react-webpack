@@ -9,8 +9,7 @@ module.exports = merge(common,{
   entry: {
     main: [
       'babel-polyfill',
-      path.resolve(__dirname, '../src/index.js'),
-      'webpack-hot-middleware/client?path=/__webpack_hmr'
+      path.resolve(__dirname, '../src/index.js')
     ],
   },
   output: {
@@ -55,8 +54,30 @@ module.exports = merge(common,{
       }
     ]
   },
+  devServer: {
+    port: 8080,
+    compress: true,
+    hot: true,
+    historyApiFallback: true,
+    open: true,
+    clientLogLevel: 'warning',
+    overlay: {
+      warnings: true,
+      errors: true
+    },
+    stats: {
+      assets: false,
+      children: false,
+      modules: false,
+      entrypoints: false,
+      hash: false,
+      version: false
+    }
+  },
+  resolve:{
+    modules: [path.resolve(__dirname, "../node_modules"), path.resolve(__dirname, "../src")]
+  },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new AddAssetHtmlPlugin({
       filepath: path.resolve(__dirname, '../dll/*.dll.js'),
@@ -65,6 +86,6 @@ module.exports = merge(common,{
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: path.resolve(__dirname, '../dll', 'manifest.json')
-    }),
+    })
   ]
 });

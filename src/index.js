@@ -1,16 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import OfflinePluginRuntime from 'offline-plugin/runtime';
-import App from './App';
+import { render } from 'react-dom';
+import { Provider } from 'mobx-react';
+import stores from './stores';
+import Routes from './routes';
 import './index.scss';
 
 
-ReactDOM.render(
-  <App />,
+render(
+  <Provider {...stores}>
+    <Routes />
+  </Provider>,
   document.getElementById('root')
 );
 
 if(module.hot) {
-  module.hot.accept()
+  module.hot.accept();
 }
-OfflinePluginRuntime.install();

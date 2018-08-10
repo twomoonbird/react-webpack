@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import logo from './assets/images/logo.svg';
+import { observer, inject } from 'mobx-react';
+import logo from '../../assets/images/logo.svg';
 import './App.scss';
 
+@inject('data') @observer
 class App extends Component {
   render() {
     return (
