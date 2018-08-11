@@ -5,10 +5,10 @@ module.exports = {
   mode: 'production',
   entry: {
     vendor: [
-      'react','react-dom','react-router-dom',
-      'react-loadable','mobx','mobx-react',
-      'axios','js-cookie'
-    ]  //提前提取的模块
+      'react', 'react-dom', 'react-router-dom',
+      'react-loadable', 'mobx', 'mobx-react',
+      'axios', 'js-cookie'
+    ] // 提前提取的模块
   },
   output: {
     path: path.resolve(__dirname, '../dll'),

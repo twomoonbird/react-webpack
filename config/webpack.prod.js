@@ -1,10 +1,10 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const common = require('./webpack.common.js');
 
-module.exports = merge(common,{
+module.exports = merge(common, {
   mode: 'production',
   entry: {
     main: [
@@ -31,10 +31,10 @@ module.exports = merge(common,{
                 autoprefixer: {
                   add: true,
                   remove: true,
-                  browsers: ['last 2 versions'],
+                  browsers: ['last 2 versions']
                 },
                 discardComments: {
-                  removeAll: true,
+                  removeAll: true
                 },
                 discardUnused: false,
                 mergeIdents: false,
@@ -67,11 +67,11 @@ module.exports = merge(common,{
             }
           },
           {
-            loader: "image-webpack-loader",
+            loader: 'image-webpack-loader',
             options: {
               gifsicle: { interlaced: false },
               optipng: { enabled: false },
-              pngquant: { quality: "65-90", speed: 4 },
+              pngquant: { quality: '65-90', speed: 4 },
               mozjpeg: { progressive: true, quality: 65 },
               webp: { quality: 75 }
             }
@@ -85,13 +85,13 @@ module.exports = merge(common,{
       filename: 'css/main.[chunkhash:8].css',
       chunkFilename: 'css/main.[contenthash:8].css'
     }),
-    new OptimizeCssAssetsPlugin(),
+    new OptimizeCssAssetsPlugin()
   ],
   performance: {
     hints: false
   },
   stats: {
     children: false,
-    modules: false,
+    modules: false
   }
-}); 
+});

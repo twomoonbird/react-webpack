@@ -4,6 +4,6 @@ import data from './data';
 const stores = {
   user,
   data
-}
+};
 
 export default stores;

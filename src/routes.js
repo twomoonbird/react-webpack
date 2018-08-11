@@ -5,10 +5,9 @@ import App from './pages/App/App';
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/' component={App} />
+      <Route exact path="/" component={App} />
     </Switch>
   </BrowserRouter>
-)
+);
 
 export default Routes;
-

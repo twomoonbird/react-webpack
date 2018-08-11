@@ -8,10 +8,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: {
-          loader: 'happypack/loader' //cacheDirectory用于缓存编译结果，下次编译加速
+          loader: 'happypack/loader' // cacheDirectory用于缓存编译结果，下次编译加速
         },
-        include: path.resolve(__dirname, '../src'), //对src文件夹中的文件进行编译
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, '../src'), // 对src文件夹中的文件进行编译
+        exclude: /node_modules/
       },
       {
         test: /\.(ttf|eot|svg|woff|woff2)$/,
@@ -26,7 +26,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
-      favicon: path.resolve(__dirname,'../favicon.ico'),
+      favicon: path.resolve(__dirname, '../favicon.ico'),
       inject: true,
       minify: {
         removeComments: true,
@@ -36,7 +36,7 @@ module.exports = {
     }),
     new HappyPack({
       threads: 4,
-      loaders: ['babel-loader?cacheDirectory' ]
+      loaders: ['babel-loader?cacheDirectory', 'eslint-loader']
     })
   ],
   optimization: {
@@ -47,15 +47,15 @@ module.exports = {
           test: /node_modules/,
           chunks: 'initial',
           priority: -10,
-          enforce : true
+          enforce: true
         },
         styles: {
           name: 'styles',
           test: /\.(css|scss)$/,
-          chunks: 'all',    // 将css集中到一个文件
+          chunks: 'all', // 将css集中到一个文件
           enforce: true
         }
       }
     }
   }
-}
+};
